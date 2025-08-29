@@ -29,8 +29,7 @@ const headersName = ['Name','Images','Price','Quantity','Status','Updated at',]
                 <span class="text-3xl font-bold">Product List</span>
                 <RouterLink :to="{ name: 'admin-product-create'}" class="btn btn-ghost bg-gray-800 text-white rounded-md">add new</RouterLink>
             </div>
-            <Table class="table"
-            :headers="headersName">
+            <Table :headers="headersName">
                 <tr v-for="(product, index) in adminProductStore.list" class="text-center">
                     <td class="font-bold">{{ product.name }}</td>
                     <td class="flex justify-center"><img :src="product.imageUrl" class="w-12"></td>

@@ -10,7 +10,7 @@ import AdminLogin from '@/views/admin/LoginView.vue';
 import AdminDashboard from '@/views/admin/DashboardView.vue';
 
 import AdminProductList from '@/views/admin/product/ListView.vue';
-import AdminProductUpdate from '@/views/admin/product/UpdataView.vue';
+import AdminProductUpdate from '@/views/admin/product/UpdateView.vue';
 
 import AdminUserList from '@/views/admin/user/ListView.vue';
 import AdminUserUpdate from '@/views/admin/user/UpdateView.vue';

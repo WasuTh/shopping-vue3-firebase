@@ -7,11 +7,20 @@ import AdminLayout from '@/layouts/AdminLayout.vue'
 
 const adminProductStore = useAdminProductStore()
 
-const router = useRouter()
 const route = useRoute()
+const router = useRouter()
+
+const mode = ref('ADD')
 
 const productIndex = ref(-1)
-const mode = ref('ADD')
+const productData = ref({
+    name: '',
+    imageUrl: '',
+    price: 0,
+    quantity: 0,
+    about: '',
+    status: ''
+})
 
 onMounted(() => {
     if (route.params.id) {
@@ -51,15 +60,6 @@ const formData = [
     },
 ]
 
-const productData = ref({
-    name: '',
-    imageUrl: '',
-    price: 0,
-    quantity: 0,
-    about: '',
-    status: ''
-})
-
 const updateAdminProduct = () => {
     if (mode.value === 'EDIT') {
         adminProductStore.updateProduct(productIndex.value, productData.value)
@@ -74,7 +74,7 @@ const updateAdminProduct = () => {
     <AdminLayout>
         <div class="m-10 p-10 shadow-2xl">
             <div class="text-3xl font-bold">{{ mode }}</div>
-            <div class="mt-10 pt-10 grid grid-cols-2 gap-2 border-t-1 border-base ">
+            <div class="mt-10 pt-10 grid grid-cols-2 gap-2 border-t-1">
                 <div v-for="form in formData">
                     <div class="flex flex-col">
                         <span class="font-bold">{{ form.name }}</span>
@@ -85,7 +85,7 @@ const updateAdminProduct = () => {
                     </div>
                 </div>
             </div>
-            <div class="mt-10 pt-10 flex flex-col gap-5 border-t-1 border-base">
+            <div class="mt-10 pt-10 flex flex-col gap-5 border-t-1">
                 <div>
                     <select class="mt-5 text-xl select select-lg select-ghost border border-gray-500"
                         v-model="productData.status">
