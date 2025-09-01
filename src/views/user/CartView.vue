@@ -4,7 +4,7 @@ import Remove from '@/components/icons/Remove.vue';
 import Quantity from '@/components/Quantity.vue';
 import ConfirmDeletePanel from '@/components/ConfirmDeletePanel.vue'
 
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
 
 import { useCartStore } from '@/stores/user/cart'
@@ -12,7 +12,11 @@ import { useProductStore } from '@/stores/user/product';
 
 const cartStore = useCartStore()
 const productStore = useProductStore()
+console.log('setup:', productStore.list.map(p => p.quantity))
 
+onMounted(() => {
+  console.log('onMounted:', productStore.list.map(p => p.quantity))
+})
 const showComfirmDelete = ref(false)
 const itemToDelete = ref('')
 const itemIndexToDelete = ref('')
