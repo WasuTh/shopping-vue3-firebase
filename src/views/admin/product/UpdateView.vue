@@ -1,11 +1,14 @@
 <script setup>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
+
 import { useAdminProductStore } from '@/stores/admin/product'
+import { useEventStore } from '@/stores/event'
 
 import AdminLayout from '@/layouts/AdminLayout.vue'
 
 const adminProductStore = useAdminProductStore()
+const eventStore = useEventStore()
 
 const route = useRoute()
 const router = useRouter()
@@ -63,8 +66,10 @@ const formData = [
 const updateAdminProduct = () => {
     if (mode.value === 'EDIT') {
         adminProductStore.updateProduct(productIndex.value, productData.value)
+        eventStore.popupMessage('success','update product successfull')
     } else {
         adminProductStore.addProduct(productData.value)
+        eventStore.popupMessage('success','add product complete')
     }
     router.push({ name: 'admin-products-list' })
 }
